@@ -26,6 +26,7 @@ public class WorldClipPortal : MonoBehaviour {
 		lastCamPos = new Vector2(camT.position.x, camT.position.z);
 	}
 	
+	[ContextMenu("Show All")]
 	protected void OnApplicationQuit() {
 		ShowEntirely(remoteSpaceMaterial);
 		ShowEntirely(localSpaceMaterial);
