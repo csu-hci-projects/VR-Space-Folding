@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: WorldLimitGreen
-  m_Shader: {fileID: 4800000, guid: 0c012f11c9d884980995badee85400a0, type: 3}
+  m_Name: StarMat
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -39,7 +39,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: fe13d051f9d374f90a3adbc0b6de42c4, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -56,7 +56,6 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
-    - _CutSign: -1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -73,13 +72,5 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _ClipMax: {r: 0, g: 0, b: 0, a: 0}
-    - _ClipMin: {r: 0, g: 0, b: 0, a: 0}
-    - _Color: {r: 0.30588236, g: 0.6784314, b: 0.0627451, a: 1}
-    - _CutPoint: {r: 1, g: 1.25, b: 0.5, a: 0}
-    - _CutSign: {r: 1, g: 1, b: 1, a: 1}
-    - _DrawMax: {r: 5, g: 5, b: 5, a: 5}
-    - _DrawMin: {r: -5, g: -5, b: -5, a: 0}
+    - _Color: {r: 1, g: 1, b: 0.039215688, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _LineBound1: {r: 0, g: 0, b: 1, a: 0}
-    - _LineBound2: {r: 0, g: 0, b: 1, a: 0}
