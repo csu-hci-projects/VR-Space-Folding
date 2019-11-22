@@ -113,9 +113,11 @@ public class WorldClipPortal : MonoBehaviour {
 			rend.enabled = false;
 
 			// Clip at the portal position.
-			Vector4 cutSign = new Vector4(transform.forward.x, 0, -transform.forward.z, 1);
-			back.SetVector("_CutPoint", transform.position);			
-			front.SetVector("_CutPoint", transform.position);
+			Vector4 cutSign = new Vector4(Mathf.Round(-transform.forward.x), 0, Mathf.Round(-transform.forward.z), 1);
+			//Vector4 cutSign = new Vector4(-1, 0, 0, 1);
+			Vector3 cutPoint = new Vector4(transform.position.x, transform.position.y, transform.position.z, 1);
+			back.SetVector("_CutPoint", cutPoint);
+			front.SetVector("_CutPoint", cutPoint);
 			Debug.DrawRay(transform.position, Vector3.up, Color.red, 0);
 			
 			// Then, also clip by the XZ line of each edge.
@@ -142,6 +144,15 @@ public class WorldClipPortal : MonoBehaviour {
 			ShowEntirely(front);
 		}
 
+	}
+	
+	public void Hide() {
+		HideEntirely(remoteSpaceMaterial);
+		gameObject.SetActive(false);
+	}
+	
+	public void Show() {
+		gameObject.SetActive(true);
 	}
 	
 	public static void HideEntirely(Material mat) {
