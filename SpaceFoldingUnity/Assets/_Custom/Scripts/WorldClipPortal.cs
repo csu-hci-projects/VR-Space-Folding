@@ -33,11 +33,11 @@ public class WorldClipPortal : MonoBehaviour {
 	}
 	
 	void Update() {
-		DoMagic(false);
+		if (gameObject.activeInHierarchy) DoMagic(false);
 	}
 	
 	void LateUpdate() {
-		DoMagic(true);
+		if (gameObject.activeInHierarchy) DoMagic(true);
 	}
 	
 	void DoMagic(bool isLate) {
@@ -68,10 +68,13 @@ public class WorldClipPortal : MonoBehaviour {
 		if (closeEnough && wasOnFront && !nowOnFront) {
 			// Transition to another dimension!
 			inRemote = !nowOnFront;
-			Debug.Log(gameObject.name + " transitioned to: " + (inRemote ? remoteSpaceMaterial.name : localSpaceMaterial.name));
+			Debug.Log(gameObject.name + " transitioned to " + (inRemote ? "remote " : "local ")
+				+ (inRemote ? remoteSpaceMaterial.name : localSpaceMaterial.name)
+				+ " on frame " + Time.frameCount
+				 + "; active="+gameObject.activeInHierarchy, gameObject);
+			SpaceActivator.NowInSpace(leadsToSpaceNum);
 			if (inRemote) onEnteredRemote.Invoke();
 			else onEnteredLocal.Invoke();
-			SpaceActivator.NowInSpace(leadsToSpaceNum);
 		}
 		lastCamPos = cam;
 		if (!nowOnFront) {
@@ -149,10 +152,12 @@ public class WorldClipPortal : MonoBehaviour {
 	public void Hide() {
 		HideEntirely(remoteSpaceMaterial);
 		gameObject.SetActive(false);
+		Debug.Log("Hid " + gameObject + "; active="+gameObject.activeInHierarchy, gameObject);
 	}
 	
 	public void Show() {
 		gameObject.SetActive(true);
+		Debug.Log("Showed " + gameObject, gameObject);
 	}
 	
 	public void HideLocal() {

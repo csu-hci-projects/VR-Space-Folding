@@ -4,38 +4,26 @@ using UnityEngine;
 
 public class SimplePlayerController : MonoBehaviour {
 
-	public float MovementSpeed = 2;
-	public float MouseSensitivity = 90;
+	public float MovementSpeed;
+	public float MouseSensitivity;
 	public Rigidbody rb;
 	public GameObject cam;
 
-	float yaw = 0;
-	float roll = 0;
-
+	// Use this for initialization
 	void Start () {
-		if (rb == null) rb = GetComponent<Rigidbody>();
-		if (cam == null) cam = gameObject;
+
 	}
 	
+	// Update is called once per frame
 	void Update () {
 		if (Input.GetKey(KeyCode.Escape))
 			Cursor.lockState = CursorLockMode.None;
 		else
 			Cursor.lockState = CursorLockMode.Locked;
 
-		if (Cursor.lockState == CursorLockMode.Locked) {
-			Vector3 euler = cam.transform.eulerAngles;
-			if (Input.GetKey(KeyCode.RightShift)) {
-				roll = roll + MouseSensitivity * Input.GetAxis("Mouse X") * Time.deltaTime;
-			} else {
-				euler += new Vector3(-MouseSensitivity  * Input.GetAxis("Mouse Y"), 
-						MouseSensitivity * Input.GetAxis("Mouse X"), 0.0f)  * Time.deltaTime;
-				roll = Mathf.MoveTowardsAngle(roll, 0, 360 * Time.deltaTime);
-			}
-			euler.z = roll;
-			cam.transform.eulerAngles = euler;
-		}
-		
+		if (Cursor.lockState == CursorLockMode.Locked)
+			cam.transform.eulerAngles += new Vector3(-MouseSensitivity * Input.GetAxis("Mouse Y"), MouseSensitivity * Input.GetAxis("Mouse X"), 0.0f);
+
 		Vector3 forward = cam.transform.forward;
 		forward.y = 0;
 		forward = forward.normalized;
@@ -44,20 +32,15 @@ public class SimplePlayerController : MonoBehaviour {
 		right.y = 0;
 		right = right.normalized;
 
-		Vector3 shift = Vector3.zero;
-		if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) {
-			shift += forward * MovementSpeed * Time.deltaTime;
-		} else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) {
-			shift -= forward * MovementSpeed * Time.deltaTime;
-		}
-		
-		if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) {
-			shift -= right * MovementSpeed * Time.deltaTime;
-		} else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) {
-			shift += right * MovementSpeed * Time.deltaTime;
-		}
-		if (rb != null) rb.MovePosition(rb.position + shift);
-		else transform.position += shift;
+		if (Input.GetKey(KeyCode.W))
+			rb.MovePosition(transform.position + forward * MovementSpeed);
+		else if (Input.GetKey(KeyCode.S))
+			rb.MovePosition(transform.position - forward * MovementSpeed);
+
+		if (Input.GetKey(KeyCode.A))
+			rb.MovePosition(transform.position - right * MovementSpeed);
+		else if (Input.GetKey(KeyCode.D))
+			rb.MovePosition(transform.position + right * MovementSpeed);
 	}
 	
 	public void PortalCameraCorrect(Transform target)

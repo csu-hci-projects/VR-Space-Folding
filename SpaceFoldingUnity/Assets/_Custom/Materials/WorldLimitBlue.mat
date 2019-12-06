@@ -77,7 +77,7 @@ Material:
     - _ClipMin: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _CutPoint: {r: -2, g: 1.25, b: 0, a: 0}
-    - _CutSign: {r: 1, g: 1, b: 1, a: -1}
+    - _CutSign: {r: 1, g: 1, b: 1, a: 1}
     - _DrawMax: {r: 5, g: 5, b: 5, a: 5}
     - _DrawMin: {r: -5, g: -5, b: -5, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
