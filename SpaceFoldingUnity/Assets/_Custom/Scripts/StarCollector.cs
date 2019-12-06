@@ -16,8 +16,8 @@ public class StarCollector : MonoBehaviour {
 	// Transforms which must be close enough to collect this item.
 	public Transform[] hands;
 	
-	public UnityEvent collected;
-	public UnityEvent shown;
+	public GameObjectEvent onCollected;
+	public GameObjectEvent onShown;
 	
 	SphereCollider collider;
 	bool visible;
@@ -26,8 +26,8 @@ public class StarCollector : MonoBehaviour {
 	Vector3 startPos;
 	Vector3 startScale;
 	
-	protected void Start() {
-		startPos = transform.position;
+	protected void Awake() {
+		startPos = transform.localPosition;
 		startScale = transform.localScale;
 		collider = GetComponent<SphereCollider>();
 		Show();
@@ -42,7 +42,7 @@ public class StarCollector : MonoBehaviour {
 		}
 
 		// otherwise, do our inviting bounce
-		transform.position = startPos + 0.1f * Vector3.up * Mathf.Abs(Mathf.Cos(Time.time/1f * Mathf.PI));
+		transform.localPosition = startPos + 0.1f * Vector3.up * Mathf.Abs(Mathf.Cos(Time.time/1f * Mathf.PI));
 
 		// and then check for a touch from the user's hands
 		Vector3 center = collider.bounds.center;
@@ -58,7 +58,7 @@ public class StarCollector : MonoBehaviour {
 
 	void HandleTouch(Transform hand) {
 		Debug.Log(gameObject.name + " touched by " + hand.name);
-		collected.Invoke();
+		onCollected.Invoke(gameObject);
 		StartTransition();
 	}
 	
@@ -71,13 +71,20 @@ public class StarCollector : MonoBehaviour {
 	
 	void ContinueTransition() {
 		transitionVal = Mathf.MoveTowards(transitionVal, 1, Time.deltaTime / 0.5f);
-		transform.position = Vector3.Lerp(startPos, startPos + Vector3.up * 1f, transitionVal);
+		transform.localPosition = Vector3.Lerp(startPos, startPos + Vector3.up * 1f, transitionVal);
 		transform.localScale = startScale * (1 - transitionVal);
 	}
 	
-	void Show() {
+	public void Show() {
 		visible = true;
-		transform.position = startPos;
+		transform.localPosition = startPos;
 		transform.localScale = startScale;		
+		gameObject.SetActive(true);
+		onShown.Invoke(gameObject);
+	}
+	
+	public void Hide() {
+		visible = false;
+		gameObject.SetActive(false);
 	}
 }
