@@ -25,7 +25,7 @@ public class SimplePlayerController : MonoBehaviour {
 
 		if (Cursor.lockState == CursorLockMode.Locked) {
 			Vector3 euler = cam.transform.eulerAngles;
-			if (Input.GetKey(KeyCode.LeftShift)) {
+			if (Input.GetKey(KeyCode.RightShift)) {
 				roll = roll + MouseSensitivity * Input.GetAxis("Mouse X") * Time.deltaTime;
 			} else {
 				euler += new Vector3(-MouseSensitivity  * Input.GetAxis("Mouse Y"), 

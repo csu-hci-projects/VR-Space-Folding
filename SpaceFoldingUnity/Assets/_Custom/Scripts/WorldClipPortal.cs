@@ -155,6 +155,14 @@ public class WorldClipPortal : MonoBehaviour {
 		gameObject.SetActive(true);
 	}
 	
+	public void HideLocal() {
+		HideEntirely(localSpaceMaterial);
+	}
+	
+	public void HideRemote() {
+		HideEntirely(remoteSpaceMaterial);
+	}
+	
 	public static void HideEntirely(Material mat) {
 		mat.SetVector("_LineBound1", new Vector4(0,0,1,0));
 		mat.SetVector("_LineBound2", new Vector4(0,0,1,0));
