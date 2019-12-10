@@ -1,0 +1,8 @@
+{
+  "name":"VR Space Folding",
+  "department":"pages/department.json",
+  "pages": [
+    {"type":"page", "title":"Project Description", "menu":"Project", "file":"pages/project.md"},
+    {"type":"link", "title":"GitHub Repo", "menu":"GitHub Repo", "url":"https://github.com/csu-hci-projects/VR-Space-Folding/"}
+  ]
+}

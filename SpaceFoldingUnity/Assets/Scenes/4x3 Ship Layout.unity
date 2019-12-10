@@ -2883,7 +2883,7 @@ GameObject:
   - component: {fileID: 287042118}
   - component: {fileID: 287042117}
   m_Layer: 0
-  m_Name: Star
+  m_Name: Star B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4182,7 +4182,7 @@ GameObject:
   - component: {fileID: 413573045}
   - component: {fileID: 413573044}
   m_Layer: 0
-  m_Name: Star
+  m_Name: Star D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4768,7 +4768,7 @@ GameObject:
   - component: {fileID: 435085754}
   - component: {fileID: 435085753}
   m_Layer: 0
-  m_Name: Star
+  m_Name: Star E
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6638,6 +6638,7 @@ GameObject:
   m_Component:
   - component: {fileID: 623044721}
   - component: {fileID: 623044720}
+  - component: {fileID: 623044722}
   m_Layer: 0
   m_Name: ProtocolManager
   m_TagString: Untagged
@@ -6682,6 +6683,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &623044722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 623044719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 312d007ce1dba41e1af39bb86462b29a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &627739539
 Prefab:
   m_ObjectHideFlags: 0
@@ -16256,7 +16268,7 @@ GameObject:
   - component: {fileID: 1483508562}
   - component: {fileID: 1483508561}
   m_Layer: 0
-  m_Name: Star
+  m_Name: Star C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18384,7 +18396,7 @@ GameObject:
   - component: {fileID: 1705620615}
   - component: {fileID: 1705620614}
   m_Layer: 0
-  m_Name: Star
+  m_Name: Star A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
