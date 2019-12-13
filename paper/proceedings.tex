@@ -63,7 +63,8 @@
 \usepackage{microtype}        % Improved Tracking and Kerning
 % \usepackage[all]{hypcap}    % Fixes bug in hyperref caption linking
 \usepackage{ccicons}          % Cite your images correctly!
-% \usepackage[utf8]{inputenc} % for a UTF8 editor only
+\usepackage[utf8]{inputenc} % for a UTF8 editor only
+\usepackage{listings}
 
 % If you want to use todo notes, marginpars etc. during creation of
 % your draft document, you have to enable the "chi_draft" option for
@@ -235,27 +236,62 @@ However, within these constraints, portal placement is otherwise free.  In this 
 
 The set of connected virtual rooms form an undirected, connected graph.  The graph size is the number of rooms, and its order is equal to the largest number of portals in any room.  In most applications this order is likely to be relatively low, as each portal takes up roughly $2 m^2$ of physical space.  We can therefore enumerate the possible room graphs.  An order 1 graph (i.e. no more than one portal per room) is always exactly two rooms.  There are two possible order 2 (two portals per room) graphs, regardless of size: either all rooms connected in a line, or the end rooms also joined to form a loop.
 
-\begin{figure*}[htb]
+\begin{figure}[htb]
   \centering
   \includegraphics[width=1\columnwidth]{figures/Size4Graphs.pdf}
   \caption{All possible order-3 graphs of 4 nodes.  These are the possible topologies for a VE with 4 rooms and up to 3 doors per room.}~\label{fig:size4Graphs}
-\end{figure*}
+\end{figure}
 
-\begin{figure*}[htb]
+\begin{figure}[htb]
   \centering
   \includegraphics[width=1\columnwidth]{figures/Size5Graphs.pdf}
   \caption{All possible order-3 graphs of 5 nodes.  The room layout shown in Figure~\ref{fig:foldingDiagram} and used in the pilot study corresponds to the top-right graph above.}~\label{fig:size5Graphs}
-\end{figure*}
+\end{figure}
 
 Once we allow order 3 (up to three portals per room), the design possibilities expand considerably.  The smallest order-3 graph has four nodes, and there are exactly three such graphs, shown in Figure~\ref{fig:size4Graphs}.  Any arrangement of four rooms, with no more than three portals per room, will be isomorphic to one of these.  Similarly, with five rooms, the layout will be isomorphic to one of the eight graphs shown in Figure~\ref{fig:size5Graphs}.  Larger or higher-order graphs are of course possible too.  While there is in principle no limit to the size or order of the graph layout one could use, order 3 is the smallest order which allows a wide variety of possible designs, and will be taken as a minimal requirement when considering implementation details.
 
 \subsection{Implementation Details}
 
-- Portal code requirements.
+To implement the space folding technique in VR requires a portal solution that meets the following requirements:
 
-- Shader approach.
+1. It must work in VR on the platform of choice, allowing users to see through the portal with proper stereo.
+
+2. It must allow for at least three portals in the same virtual space.  Note that it is not strictly necessary to allow for a portal to be visible through another portal; proper arrangement of occluders (e.g. walls) can avoid the need for that.  However, a portal solution that allows for such secondary visibility would reduce constraints on the design of the space.
+
+For this pilot study, the Unity game engine and Oculus Quest headset were chosen.  However, after seeking and evaluating all available off-the-shelf portal solutions, none were found that could meet these criteria.  Most portal solutions did not work in VR at all, or did not work on the Quest; and one allowed for only a single portal.  A custom portal solution was therefore written for this study.
+
+The portals combine a custom shader with a script to configure materials using that shader for each portal in view.  The shader limits its drawing to a certain region of the world, specified by material properties.  These include $CutPoint$ (a 3D vector), and $CutSign$ (a 4D vector).  For each axis (X, Y, and Z), the shader will use the corresponding element of $CutSign$ to control how drawing is limited relative to $CutPoint$:
+
+1: draw only geometry \textit{ahead} of $CutPoint$ on this axis
+0: don't cut on this axis (i.e. draw everything)
+-1: draw only geometry \textit{behind} $CutPoint$ on this axis
+
+In addition, the shade has properties $LineBound1$ and $LineBound2$, each a 4D vector, which define two lines in the world.  The fourth element of $CutSign$ controls drawing relative to these lines:
+
+1: draw only to the right of $LineBound1$ and left of $LineBound2$
+0: don't limit drawing by the line bounds
+-1: draw only to the left of $LineBound1$ and right of $LineBound2$
+
+Each virtual room is assigned a unique material that uses the custom shader.  A script on each portal then configures the materials for its "local" and "remote" rooms as follows: $CutPoint$ is set to the center of the portal; the line bounds are set to the left and right edges of the portal; and $CutSign$ is set so that the remote material is drawn only for the frustum of space through the portal, and the local material is drawn everywhere except that same frustum.
+
+The effect of this shader can be seen in Figure~\ref{fig:shaderEffect}.
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=1\columnwidth]{figures/ShaderEffect.png}
+  \caption{Effect of the world-limit shader.  Player's viewpoint is indicated by the camera icon in the corner of the space.  The local material is here colored red, and the remote (seen through the portal) material is colored yellow.  Inset shows the view from the player's perspective.}~\label{fig:shaderEffect}
+\end{figure}
+
+
 
 \subsection{Pilot Study}
+
+\begin{figure*}[htb]
+  \centering
+  \includegraphics[width=1.75\columnwidth]{figures/LikertChart.pdf}
+  \caption{Post-trial survey responses collected in the pilot study.  Positive (top) and negative (bottom) statements have been grouped here, but were interleaved in the actual questionnaire.}~\label{fig:likertChart}
+\end{figure*}
+
 
 \section{Results}
 
@@ -284,6 +320,12 @@ Once we allow order 3 (up to three portals per room), the design possibilities e
 \section{Acknowledgments}
 
 Here thanking everybody who helped out.
+
+\begin{figure*}
+\lstinputlisting[language=C]{WorldLimit.shader}
+  \caption{Source code for the world-limit shader used as the key component of the custom portal solution used in the pilot study.}~\label{lst:worldLimitShader}
+\end{figure*}
+
 
 % Balancing columns in a ref list is a bit of a pain because you
 % either use a hack like flushend or balance, or manually insert
