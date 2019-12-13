@@ -11,3 +11,4 @@ Author: Joe Strout
 3. [Checkpoint 3](https://youtu.be/bGxXwYrxHyo)
 4. [Checkpoint 4](https://youtu.be/aXW-Q-122_I)
 5. [Checkpoint 5](https://youtu.be/_uALheKSJWQ)
+6. [Checkpoint 6](https://youtu.be/XyOVBGBWQYw)
