@@ -75,11 +75,11 @@ Material:
     m_Colors:
     - _ClipMax: {r: 0, g: 0, b: 0, a: 0}
     - _ClipMin: {r: 0, g: 0, b: 0, a: 0}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.9843137, g: 0.007843138, b: 0.02745098, a: 1}
     - _CutPoint: {r: -2, g: 1, b: 0.5, a: 0}
-    - _CutSign: {r: 1, g: 1, b: 1, a: -1}
+    - _CutSign: {r: -0, g: 0, b: 1, a: 1}
     - _DrawMax: {r: 5, g: 5, b: 0.461, a: 0}
     - _DrawMin: {r: 99, g: 99, b: 99, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _LineBound1: {r: 0, g: 0, b: 1, a: 0}
-    - _LineBound2: {r: 0, g: 0, b: 1, a: 0}
+    - _LineBound1: {r: -1.5, g: 0.5, b: -2.1687155, a: 1.5217276}
+    - _LineBound2: {r: -2.5, g: 0.5, b: -2.1687155, a: 1.5217276}

@@ -46,9 +46,32 @@ All experiments were done on a Quest headset, programmed in Unity on a MacBook P
 
 # Results
 
+Results of the Likert-scale survey are summarized in the chart below.  Positive statements are grouped at the top, and negative statements at the bottom, though in the actual survey these were interleaved.  
+
+![LikertChart](images/LikertChart.png "images/LikertChart.png")
+
+There was strong agreement with the positive statements, such as “I was able to navigate the space without much trouble.”  There was mostly disagreement or neutrality on the negative statements.
+
+The subjects were also given an opportunity to provide free-form comments.  A representative sample of these:
+
+- “it felt oddly natural”
+
+- “this shouldn’t feel normal, but it does”	
+
+- “I understood where each of the rooms were”
+
+- “would have liked another 5 minutes or so”
+
+Together with the Likert results, these suggest that users were on the whole not bothered by the impossible nature of the folded space.
+
 # Conclusion
 
+This project prototyped a new form of spatial compression with significant advantages over previous approaches.  It works with a physical space as small as 2 by 3 meters, compatible with most home room-scale setups.  Yet it allows for an unlimited amount of virtual space, which users can navigate by real walking.  Finally, the pilot study suggests that users actually like it.  For these reasons, space folding may be expected to become an important technique in VR software design.
+
 # Links
+
+- [GitHub Repo](https://github.com/csu-hci-projects/VR-Space-Folding)
+- [Brief Project Video](https://youtu.be/YtcG0lH2q-E)
 
 
 
