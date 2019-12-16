@@ -70,8 +70,9 @@ This project prototyped a new form of spatial compression with significant advan
 
 # Links
 
+- [Report](https://github.com/csu-hci-projects/VR-Space-Folding/blob/master/paper/Strout-CS567.pdf)
 - [GitHub Repo](https://github.com/csu-hci-projects/VR-Space-Folding)
 - [Brief Project Video](https://youtu.be/YtcG0lH2q-E)
-
+- [Full Video Presentation](https://youtu.be/XZIql_T9iys)
 
 
